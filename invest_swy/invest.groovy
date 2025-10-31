@@ -1,35 +1,59 @@
 import org.hortonmachine.modules.*
 import org.hortonmachine.*
 
-def baseFolder = "/home/hydrologis/storage/lavori_tmp/KLAB/testGura/"
+def baseFolder = "/home/hydrologis/development/hm_models_testdata/invest_swy/"
 
-def rainMap = baseFolder + "01_input_runoff/prcp_a0.tif"
-def netMap = baseFolder + "01_input_runoff/hm_denet1000_gura.tif"
-def cnMap = baseFolder + "01_input_runoff/CN.tif"
-def eventsMap = baseFolder + "01_input_runoff/n_events0.tif"
-def quickflowMap = baseFolder + "01_output_runoff/hm_runoff.tif"
+def quickflowInputsFolder = baseFolder + "/01_input_quickflow/"
+def quickflowOutputsFolder = baseFolder + "/01_output_quickflow/"
+if( !new File(quickflowOutputsFolder).exists() ){
+    new File(quickflowOutputsFolder).mkdirs()
+}
 
-def referenceEtpMap = baseFolder + "02_input_pet/et0_a0.tif"
-def kcMap = baseFolder + "02_input_pet/kc_0.tif"
-def petMap = baseFolder + "02_output_pet/hm_pet.tif"
+def rainMap = quickflowInputsFolder + "prcp_a0.tif"
+def netMap = quickflowInputsFolder + "hm_denet1000_gura.tif"
+def cnMap = quickflowInputsFolder + "CN.tif"
+def eventsMap = quickflowInputsFolder + "n_events0.tif"
+def quickflowMap = quickflowOutputsFolder + "hm_quickflow.tif"
 
-def flowMap = baseFolder + "03_input_recharge/hm_dedrain_gura.tif"
-def infMap = baseFolder + "03_output_recharge/hm_infiltration.tif"
-def netInfMap = baseFolder + "03_output_recharge/hm_netinfiltration.tif"
-def aetMap = baseFolder + "03_output_recharge/hm_aet.tif"
-def lsumAvailableMap = baseFolder + "03_output_recharge/hm_lsum_available.tif"
+def petInputFolder = baseFolder + "02_input_pet/"
+def petOutputFolder = baseFolder + "02_output_pet/"
+if( !new File(petOutputFolder).exists() ){
+    new File(petOutputFolder).mkdirs()
+}
+
+def referenceEtpMap = petInputFolder + "et0_a0.tif"
+def kcMap = petInputFolder + "kc_0.tif"
+def petMap = petOutputFolder + "hm_pet.tif"
+
+def rechargeInputFolder = baseFolder + "03_input_recharge/"
+def rechargeOutputFolder = baseFolder + "03_output_recharge/"
+if( !new File(rechargeOutputFolder).exists() ){
+    new File(rechargeOutputFolder).mkdirs()
+}
+
+def flowMap = rechargeInputFolder + "hm_dedrain_gura.tif"
+def infMap = rechargeOutputFolder + "hm_infiltration.tif"
+def netInfMap = rechargeOutputFolder + "hm_netinfiltration.tif"
+def aetMap = rechargeOutputFolder + "hm_aet.tif"
+def lsumAvailableMap = rechargeOutputFolder + "hm_lsum_available.tif"
 def alpha = 1.0/12.0
 
-def bfMap = baseFolder + "04_output_baseflow/hm_baseflow.tif"
-def lsumMap = baseFolder + "04_output_baseflow/hm_lsum.tif"
-def vriMap = baseFolder + "04_output_baseflow/hm_vri.tif"
-def biMap = baseFolder + "04_output_baseflow/hm_b.tif"
+def baseflowInputsFolder = baseFolder + "04_input_baseflow/"
+def baseflowOutputFolder = baseFolder + "04_output_baseflow/"
+if( !new File(baseflowOutputFolder).exists() ){
+    new File(baseflowOutputFolder).mkdirs()
+}
+
+def bfMap = baseflowOutputFolder + "hm_baseflow.tif"
+def lsumMap = baseflowOutputFolder + "hm_lsum.tif"
+def vriMap = baseflowOutputFolder + "hm_vri.tif"
+def biMap = baseflowOutputFolder + "hm_b.tif"
 
 //println HM.printColorTables()
 
-def doScs = false
-def doPet = false
-def doInf = false
+def doScs = true
+def doPet = true
+def doInf = true
 def doBaseFlow = true
 
 
