@@ -53,8 +53,8 @@ def biMap = baseflowOutputFolder + "hm_b.tif"
 
 def doScs = true
 def doPet = true
-def doInf = true
-def doBaseFlow = true
+def doInf = false
+def doBaseFlow = false
 
 
 //HM.makeQgisStyleForRaster("flow", flowMap, 3)
