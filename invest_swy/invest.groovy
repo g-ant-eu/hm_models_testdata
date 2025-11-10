@@ -40,6 +40,8 @@ def availableRechargeMap = rechargeOutputFolder + "hm_available_recharge"+monthS
 def aetMap = rechargeOutputFolder + "hm_aet"+monthStr+".tif"
 def upslopeSubsidyMap = rechargeOutputFolder + "hm_upslopeSubsidy"+monthStr+".tif"
 def alpha = 1.0/12.0
+def beta = 1.0
+def gamma = 0.5
 
 def baseflowInputsFolder = baseFolder + "04_input_baseflow/"
 def baseflowOutputFolder = baseFolder + "04_output_baseflow/"
@@ -90,6 +92,8 @@ if(doPet){
 if(doRech){
     def v = new SWYRechargeRouting()
     v.pAlpha = alpha
+    v.pBeta = beta
+    v.pGamma = gamma
     v.inPet = petMap
     v.inFlowdirections = flowMap
     v.inNet = netMap
